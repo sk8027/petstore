@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="menu.css" rel="stylesheet" type="text/css">
+    <style>
+    ul.hmenu {
+        list-style-type: none;
+        margin : 0px;
+        padding : 0px;
+        overflow: hidden;
+        background-color : #333;
+    }
+        ul.hmenu li{
+            float : left;
+        }
+        ul.hmenu li a{
+            display: block;
+            color : white;
+            text-align: center;
+            padding : 14px 16px;
+            text-decoration: none;
+        }
+        ul.hmenu li a:hover:not(.active){
+            background-color: #111;
+        }
+        .active{
+            background-color : #4caf50;
+        }
+
+
+    </style>
+
+<script>
+
+    document.onreadystatechange = function () {
+        if (document.readyState == "complete") {
+            document.getElementById("addBtn").onclick =  addRow;
+            var table = document.getElementById("emp");
+
+
+            var data =[
+                {"firstName" :"Ali","lastName" : "Imran"},
+                {"firstName" :"Shahid","lastName" : "Afridi"},
+                {"firstName" :"Tahir","lastName" : "Imran"}
+            ]
+            for( emp in data){
+
+
+                var tr = document.createElement("tr");
+                var td = document.createElement("td");
+                td.innerHTML = data[emp].firstName;
+                var td2 = document.createElement("td");
+                td2.innerHTML = data[emp].lastName;
+                tr.appendChild(td);
+                tr.appendChild(td2);
+                table.appendChild(tr);
+            }
+
+        }
+    }
+    function manipulateDOM(){
+        var hmenu = document.getElementsByClassName("hmenu");
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        //var href = a.createAttribute("href");
+        //href.value = "#";
+        //a.setAttribute(href);
+        a.setAttribute("href",document.getElementById("url").value);
+        a.innerHTML = document.getElementById("menuText").value;
+        li.appendChild(a);
+
+         hmenu[0].appendChild(li);
+    }
+var addRow =function(){
+    var table = document.getElementById("emp");
+    var tr = document.createElement("tr");
+    var td = document.createElement("td");
+    td.innerHTML = document.getElementById("firstName").value;
+    var td2 = document.createElement("td");
+    td2.innerHTML = document.getElementById("lastName").value;
+    tr.appendChild(td);
+    tr.appendChild(td2);
+    table.appendChild(tr);
+    document.getElementById("firstName").value = "";
+    document.getElementById("lastName").value = "";
+    document.getElementById("firstName").focus();
+}
+function sortArray(element,callback){
+    for(i=0;i<element.length;i++){
+        for(j=0;j<element.length;j++){
+            if(element[i]<element[j]){
+                var tmp = element[i];
+                element[i] = element[j];
+                element[j] = tmp;
+
+            }
+        }
+    }
+    callback(element);
+}
+/*sortArray([5,1,9,3,2],function(arr){
+
+    document.write("<table>");
+    for(j=0;j<arr.length;j++){
+        document.write("<tr>");
+        document.write("<td>" + arr[j]+"</td>");
+        document.write("</tr>");
+
+    }
+    document.write("</table>");
+})*/
+    function printFruits(fruits){
+        for (var i = 0; i < fruits.length; i++) {
+            (function(current){
+                setTimeout( function(){
+                    console.log( fruits[current] );
+                }, current * 1000 );
+            })( i );
+        }
+    }
+
+    printFruits(["Lemon", "Orange", "Mango", "Banana"]);
+</script>
+</head>
+<body>
+<h1>Product</h1>
+
+ <ul class="hmenu">
+     <li><a href="#" class="active">Home</a></li>
+     <li><a href="#">News</a></li>
+     <li><a href="#">Content</a></li>
+     <li><a href="#">Avount</a></li>
+ </ul>
+<BR>
+ <div id="mainDiv">
+     Hello this is main Div
+ </div>
+<div id="mainDiv2">
+    Hello this is another Div
+</div>
+<label>First Name</label></label><input type="text" id="firstName"  ><BR>
+<label>LastName</label><input type="text" id="lastName"><BR>
+
+<button id="addBtn" >Add</button>
+<button id="btn" >callback</button>
+<table border="1" id="emp">
+    <tr>
+        <td>First Name</td>
+        <td>LastName</td>
+    </tr>
+</table>
+</body>
+</html>

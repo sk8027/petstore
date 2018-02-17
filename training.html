@@ -1,0 +1,69 @@
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+
+        <script src="jquery.min.js"></script>
+
+        <script>
+            $(document).ready(function() {
+                $("#addBtn").on('click',function(){
+                    var rowNo = $("#emp tbody tr").length;
+                    rowNo = rowNo +1;
+                    $("#emp tbody").append("<tr row_id='row_id"+rowNo+"'><td><input type='radio' name='rowSelect'></td><td id='firstName_"+rowNo+"'>"+$("#firstName").val()+"</td><td id='lastName_"+rowNo+"'>"+$("#lastName").val()+"</td>");
+                    $("#firstName").val('');
+                    $("#lastName").val('');
+                    $("#firstName").focus();
+                });
+                $("#editBtn").on('click',function(){
+                    var rowNo = $("#emp input:radio:checked").closest("tr")[0].rowIndex;
+                    var firstName = $("#emp #firstName_"+rowNo).html();
+                    var lastName = $("#emp #lastName_"+rowNo).html();
+                    $("#firstName").val(firstName);
+                    $("#lastName").val(lastName);
+                });
+                $("#updateBtn").on('click',function(){
+                    var rowNo = $("#emp input:radio:checked").closest("tr")[0].rowIndex;
+                    $("#emp #firstName_"+rowNo).html($("#firstName").val());
+                    $("#emp #lastName_"+rowNo).html($("#lastName").val());
+                });
+            });
+
+        </script>
+    </head>
+    <body>
+<table>
+    <tr>
+        <td>First Name</td>
+        <td><input type="text" id="firstName"  ></td>
+    </tr>
+    <tr>
+        <td>Last Name</td>
+        <td><input type="text" id="lastName"  ></td>
+    </tr>
+     <tr>
+         <td colspan="2">
+             <button id="addBtn" >Add</button>
+             <button id="editBtn" >Edit</button>
+             <button id="updateBtn" >Update</button>
+
+         </td>
+     </tr>
+
+</table>
+    <table border="1" id="emp">
+        <thead>
+        <tr>
+            <td></td>
+            <td>First Name</td>
+            <td>LastName</td>
+        </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    </body>
+    </html>

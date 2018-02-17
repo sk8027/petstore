@@ -1,0 +1,28 @@
+ul.vmenu{
+     list-style-type: none;
+     margin : 0px;
+     padding:0px;
+     width:200px;
+     background-color: #f1f1f1;
+ }
+ul.vmenu li a{
+    display: block;
+    color : #000;
+    padding : 8px 16px;
+    text-decoration: none;
+}
+ul.vmenu li{
+    text-align: center;
+    border-bottom: 1px solid #555;
+}
+ul.vmenu li:last-child{
+    border-bottom : none;
+}
+ul.vmenu li a.active{
+    background-color: #4caf50;
+}
+ul.vmenu li a:hover:not(.active){
+    background-color : #555;
+    color : white;
+}
+
